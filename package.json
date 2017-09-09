@@ -1,0 +1,36 @@
+{
+  "name": "story",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
+    "react-classnames": "^0.1.2",
+    "react-dom": "^15.6.1",
+    "react-story": "0.0.10",
+    "rebass": "^1.0.4",
+    "storybook": "^0.0.1"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.2.5",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-story": "0.0.10",
+    "rebass": "^1.0.4",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1",
+    "write-file-webpack-plugin": "^4.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "webpack-server": "webpack-dev-server --progress --inline --hot"
+  },
+  "author": "",
+  "license": "ISC"
+}
