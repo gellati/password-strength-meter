@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const checkboxStyles = {
   border: '1px solid black'
@@ -15,9 +16,9 @@ const Checkbox = ({checkd, defaultChecked, handleChangeCheckbox}) => (
 );
 
 Checkbox.propTypes = {
-  checkd: React.PropTypes.bool,
-  defaultChecked: React.PropTypes.bool,
-  handleChangeCheckbox: React.PropTypes.func
+  checkd: PropTypes.bool,
+  defaultChecked: PropTypes.bool,
+  handleChangeCheckbox: PropTypes.func
 };
 
 export default Checkbox;

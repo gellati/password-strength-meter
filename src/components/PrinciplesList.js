@@ -1,10 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames' //'react-classnames'
 
 class PrinciplesList extends React.Component{
-  static propTypes = {
-    password: React.PropTypes.string
-  }
 
   principleSatisfied(principle){
     let { password } = this.props;
@@ -32,6 +30,10 @@ class PrinciplesList extends React.Component{
       </ul>
     );
   }
+}
+
+PrinciplesList.propTypes = {
+  password: PropTypes.string
 }
 
 export default PrinciplesList;

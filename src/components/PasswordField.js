@@ -1,11 +1,12 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 // destructure import: https://stackoverflow.com/questions/32329358/react-bootstrap-uncaught-typeerror-cannot-read-property-touppercase-of-unde
 
 import { Input } from 'react-bootstrap'
 import { InputGroup } from 'react-bootstrap'
 import { FormControl } from 'react-bootstrap'
 import { FormGroup } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 
 import { Button } from 'react-bootstrap'
 
@@ -17,12 +18,17 @@ class PasswordField extends React.Component{
     super(props);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
-
   handlePasswordChange(ev){
+//    this.password = ev.target.value;
     let { onPasswordChange } = this.props;
     onPasswordChange(ev.target.value);
+    this.setState({ password: ev.target.value });
   }
-
+/* // no work, use above method
+  handleChange(e) {
+     this.setState({ password: e.target.value });
+   }
+*/
   satisfiedPercent(){
     let { principles, password } = this.props;
     let satisfiedCount = principles.map(p => p.predicate(password))
@@ -37,98 +43,41 @@ class PasswordField extends React.Component{
     return classNames({
       error: (percentage < 33.4),
       success: (percentage >= 66.7),
-      warning: (percentage >= 33.4 && percentage <= 66.7)
+      warning: (percentage >= 33.4 && percentage < 66.7)
     });
   }
+  // need this method ?
+  getValidationState() {
+      const length = this.satisfiedPercent();
+      if (length > 10) return 'success';
+      else if (length > 5) return 'warning';
+      else if (length > 0) return 'error';
+    }
 
   render(){
     let {password} = this.props;
-/*
-    return(
-      <input type="text" label='Password' value={password} onChange={this.handlePasswordChange}>// bsStyle={this.inputColor()}>
-      </input>
-    );
-    */
         return(
-          <Input
-            type='password'
-            label='Password'
-            value={password}
-            bsStyle={this.inputColor()}
-            onChange={this.handlePasswordChange}
-            hasFeedback>
-          </Input>
+          <form>
+            <FormGroup
+              controlId="formBasicText"
+              validationState={this.getValidationState()} // need this?
+              >
+              <FormControl
+              type="text"
+                 value={password}
+                 placeholder="Enter password"
+                 onChange={this.handlePasswordChange}
+                 bsClass={this.inputColor()}
+               />
+               <FormControl.Feedback />
+            </FormGroup>
+          </form>
         );
-        /*
-    */
-    /*
-    return(
-    <FormGroup>
-      <InputGroup>
-        <InputGroup.Addon></InputGroup.Addon>
-        <FormControl type="text"></FormControl>
-      </InputGroup>
-    </FormGroup>
-  );
-
-  */
-
-/*
-    return(
-      <form>
-    <FormGroup>
-      <InputGroup>
-      <InputGroup.Addon>@</InputGroup.Addon>
-        <FormControl type="text" />
-      </InputGroup>
-    </FormGroup>
-    </form>
-    );
-*/
   }
 }
 
 PasswordField.propTypes = {
-  password: React.PropTypes.string
+  password: PropTypes.string
 }
 
 export default PasswordField;
-
-/*
-const PasswordField = ({password}) => (
-  <Input
-    type='password'
-    label='Password'
-    value={password}
-    bsStyle={inputColor()}
-    onChange={handlePasswordChange}
-    hasFeedback>
-  </Input>
-);
-
-handlePasswordChange(ev){
-  let { onPasswordChange } = props;
-  onPasswordChange(ev.target.value);
-}
-satisfiedPercent(){
-  let { principles, password } = props;
-  let satisfiedCount = principles.map(p => p.predicate(password))
-                                 .reduce((count, satisfied) =>
-                                    count + (satisfied ? 1 : 0 )
-                                  , 0);
-  let principlesCount = principles.length;
-  return (satisfiedCount / principlesCount) * 100.0;
-
-}
-
-inputColor(){
-  percentage = satisfiedPercent();
-  return classNames({
-    error: (percentage < 33.4),
-    success: (percentage >= 66.7),
-    warning: (percentage >= 33.4 && percentage <= 66.7)
-  });
-}
-
-export default PasswordField;
-*/

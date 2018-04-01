@@ -1,13 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Grid, Row, Col } from 'react-bootstrap'
 
-import {PasswordField} from './PasswordField'
-import {StrengthMeter} from './StrengthMeter'
+import PasswordField from './PasswordField'
+import StrengthMeter from './StrengthMeter'
 
 const SPECIAL_CHARS_REGEX = /[^A-Za-z0-9]/;
 const DIGIT_REGEX = /[0-9]/;
-
 
 class PasswordInput extends React.Component{
   constructor(props){
@@ -40,9 +40,26 @@ class PasswordInput extends React.Component{
   }
 }
 
+PasswordInput.defaultProps = {
+  goodPasswordPrinciples: [
+    {
+      label: "6+ characters",
+      predicate: password => password.length >= 6
+    },
+    {
+      label: "with at least one digit",
+      predicate: password => password.match(DIGIT_REGEX) !== null
+    },
+    {
+      label: "with at least one special character",
+      predicate: password => password.match(SPECIAL_CHARS_REGEX) !== null
+    }
+  ]
+}
+
 PasswordInput.proptypes = {
-  password: React.PropTypes.string,
-  principles: React.PropTypes.string
+  goodPasswordPrinciples: PropTypes.string,
+  principles: PropTypes.string
 };
 
 export default PasswordInput;

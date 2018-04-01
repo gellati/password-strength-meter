@@ -1,5 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { storiesOf   } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import Button from '../src/components/Button'
 import RadioButton from '../src/components/RadioButton'
@@ -10,6 +10,10 @@ import PrinciplesList from '../src/components/PrinciplesList'
 import PasswordField from '../src/components/PasswordField'
 import StrengthMeter from '../src/components/StrengthMeter'
 import PasswordInput from '../src/components/PasswordInput'
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
 
 const SPECIAL_CHARS_REGEX = /[^A-Za-z0-9]/;
 const DIGIT_REGEX = /[0-9]/;
@@ -23,17 +27,48 @@ storiesOf('Button', module)
 	    <Button onClick={action('clicked')}>Hello button</Button>
     ))
     .add('with emo', () => (
-	    <Button onClick={action('clicked')}> :-- </Button>
+	    <Button onClick={action('cliked')}> :-- </Button>
     ));
 
-    storiesOf('Checkbox', module)
-      .add('Checkbox', () => (
-        <Checkbox></Checkbox>
-      ))
-      .add('Checked', () => (
-        <Checkbox checked={true}></Checkbox>
-      ));
+storiesOf('Checkbox', module)
+    .add('Checkbox', () => (
+      <Checkbox></Checkbox>
+    ))
+    .add('Checked', () => (
+      <Checkbox checked={true} checked={action('chek')} onClick={action('chek')}></Checkbox>
+    ));
 
+
+// gives error message:
+// Super expression must either be null or a function, not object
+
+storiesOf('Form', module)
+  .add('Form', () => (
+    <form>
+    </form>
+  ));
+
+
+//function(par1, par2){}
+//(par1, par2)=> {}
+
+//        .add('PrinciplesList', () => {}
+//          .add('field', function (){}
+
+
+
+
+storiesOf('PasswordField', module)   // object
+  .add('PasswordField', () => {
+      var password = "hello";
+      return <PasswordField password={password} principles={principles}></PasswordField>
+});
+
+storiesOf('PasswordInput', module)  // object
+  .add('passwordinput', function(){
+    const password = "strength";
+  return <PasswordInput goodPasswordPrinciples={principles} password={password}></PasswordInput>
+});
 
 /*    storiesOf('PasswordInput', module)  // object
       .add('PasswordInput', () => (
@@ -41,71 +76,32 @@ storiesOf('Button', module)
     ));
 */
 
-// gives error message:
-// Super expression must either be null or a function, not object
 
-    storiesOf('PrinciplesList', module)   // object
-//      .add('PrinciplesList', () => (
-  //      <PrinciplesList password='helloo'></PrinciplesList>
-    //))
-    .add('Good password principles', function (){
-      const password = "helloooo";
-      return <PrinciplesList password={password} principles={principles}></PrinciplesList>
-    });
+storiesOf('PrinciplesList', module)   // object
+  .add('PrinciplesList', () => (
+    <PrinciplesList password='helloo'></PrinciplesList>
+))
 
-    storiesOf('PasswordField', module)   // object
-        .add('field', function (){
-          const password = "helllllo";
-          return <PasswordField password={password} principles={principles}></PasswordField>
-        });
+.add('Good password principles', function (){
+  const password = "helloooo";
+  return <PrinciplesList password={password}></PrinciplesList>
+});
 
 
-/*
-    storiesOf('PrinciplesProgress', module)   // object
-//      .add('PrinciplesProgress', () => (
-//        <PrinciplesProgress></PrinciplesProgress>
-//    ));
-   .add('test', function(){
-     const password = "hellooo";
-     const principles = [{label: "hello", predicate: password => password.length >= 6 }];
-     return <PrinciplesProgress password={password} principles={principles}></PrinciplesProgress>
-
-   });
-*/
-
-
-    /*
-    storiesOf('StrengthMeter', module)  // object
-      .add('StrengthMeter', () => (
-        <StrengthMeter></StrengthMeter>
-    ));
-
-*/
-
-
-
-/*
-storiesOf('RadioButton', module)
-  .add('gneder', () => (
-
-  ));
-*/
-storiesOf('Form', module)
-  .add('Form', () => (
-    <form>
-    </form>
-  ));
+storiesOf('PrinciplesProgress', module)   // object
+  .add('progress', function(){             // ?? not showing anything
+   const password = "hellooo";
+//     const principles = principles; //[{label: "hello", predicate: password => password.length >= 6 }];
+   return <PrinciplesProgress principles={principles} password={password}></PrinciplesProgress>
+});
 
 storiesOf('RadioButton', module)
   .add('RadioButton', () => (
-    <RadioButton></RadioButton>
-  ));
+  <RadioButton></RadioButton>
+));
 
-
-
-/*
-  .add('unclicked', () => (
-      <input type="radio" value="1" name="question"/> Male
-
-  ))
-*/
+storiesOf('StrengthMeter', module)  // object
+  .add('StrengthMeter', function(){
+    const password = "strength";
+  return <StrengthMeter principles={principles} password={password}></StrengthMeter>
+});

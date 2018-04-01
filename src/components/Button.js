@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const buttonStyles = {
   border: '1px solid black',
@@ -19,8 +20,8 @@ const Button = ({children, onClick}) => (
 );
 
 Button.propTypes = {
-  children: React.PropTypes.string.isRequired,
-  onClick: React.PropTypes.func
+  children: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default Button;

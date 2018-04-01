@@ -2,8 +2,8 @@ import React from 'react'
 import classNames from 'react-classnames'
 
 import { Panel } from 'react-bootstrap'
-import {PrinciplesProgress} from './PrinciplesProgress'
-import {PrinciplesList} from './PrinciplesList'
+import PrinciplesProgress from './PrinciplesProgress'
+import PrinciplesList from './PrinciplesList'
 
 class StrengthMeter extends React.Component{
   render(){
@@ -17,8 +17,8 @@ class StrengthMeter extends React.Component{
   }
 }
 
-
 export default StrengthMeter;
+
 
 
 /*
