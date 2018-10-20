@@ -9,7 +9,6 @@ import RadioButton from './components/RadioButton'
 import Checkbox from './components/Checkbox'
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import PrinciplesProgress from './components/PrinciplesProgress'
 import PrinciplesList from './components/PrinciplesList'
